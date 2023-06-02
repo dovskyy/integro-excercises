@@ -13,9 +13,21 @@ public class Main {
     }
 
     public static int[] mergeTwoArraysAndSort(int[] arr1, int[] arr2) {
+
+        //Inicjalizacja trzech wskaźników: i dla arr1, j dla arr2 oraz k dla merged.
+
         int[] merged = new int[arr1.length + arr2.length];
         int i = 0, j = 0, k = 0;
 
+
+        /*
+        Dopóki któraś z tablic się nie skończy to lecimy z pętlą
+        Jeśli arr1[i] jest mniejsze niż arr2[j], to przypisujemy arr1[i] do merged[k], zwiększamy i o 1 i zwiększamy k o 1.
+        W przeciwnym przypadku (gdy arr2[j] jest mniejsze lub równe arr1[i]), przypisujemy arr2[j] do merged[k], zwiększamy j o 1 i zwiększamy k o 1.
+        Następnie przechodzimy do kolejnego porównania.
+
+        W sumie to wykonaliśmy tu merge sorta, algorytm porównuje kolejne elementy z obu tablic i wstawia je w odpowiedniej kolejności do tablicy wynikowej
+         */
         while (i < arr1.length && j < arr2.length) {
             if (arr1[i] < arr2[j]) {
                 merged[k] = arr1[i];
@@ -27,17 +39,24 @@ public class Main {
             k++;
         }
 
+
+        // pętla sprawdza, czy są jeszcze elementy w arr1. Jeśli tak, przypisuje je do merged[k], zwiększa 'i' oraz 'k' o 1.
         while (i < arr1.length) {
             merged[k] = arr1[i];
             i++;
             k++;
         }
 
+        // pętla sprawdza, czy są jeszcze elementy w arr1. Jeśli tak, przypisuje je do merged[k], zwiększa 'j' oraz 'k' o 1.
         while (j < arr2.length) {
             merged[k] = arr2[j];
             j++;
             k++;
         }
+
+        //w zależności od tego w której tablicy pozostały elementy (w arr1 lub arr2) to wykona się jedna z dwóch powyższych pętli while
+        //wybrana petla doda te elementy do tablicy merged
+        //w sumie nie jest to potrzebne do tego zadania, tzn dla tego konkretnego przykladu, ale jest w razie co
 
         return merged;
     }
@@ -50,6 +69,7 @@ public class Main {
             }
         }
 
+        //proste dosyc, niepotrzebny komentarz
         return counter;
     }
 
